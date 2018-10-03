@@ -24,7 +24,6 @@ class App extends Component {
     console.log(this.state.post.createdAt)
     return (
       <div className="App">
-          <img src={post.images[2]} alt="logo" />
           <Fb_Post post={post} />
       </div>
     );
