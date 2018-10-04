@@ -17,7 +17,7 @@ constructor(){
 
   render() {
     const { post } = this.props;
-
+    console.log(post.likes.length)
     return (
       <div className="App">
         <Navbar />
@@ -29,6 +29,7 @@ constructor(){
           return <div className="card-header" >
           <img key={i} src={v} alt="image" className="render-image" />
           <br/>
+            <span> {post.likes.length} </span>
           <br/>
             <button className="like-button"> Like </button>
           
