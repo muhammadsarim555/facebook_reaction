@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Navbar from '../../Components/Navbar/Navbar';
 import FacebookEmoji from 'react-facebook-emoji';
-import image from '../../Images/images.png'
+import image from '../../Images/images.png';
+import FbImageLibrary from 'react-fb-image-grid';
 import '../../App.css';
 
 
@@ -29,27 +30,27 @@ class Fb_Post extends Component {
     </div>
   }
 
-like(){
-  const {post} = this.props;  
-  this.setState({
+  like() {
+    const { post } = this.props;
+    this.setState({
       isLike: true,
     })
     post.likes.unshift('You')
 
   }
 
-  dislike(){
-  const {post} = this.props;  
+  dislike() {
+    const { post } = this.props;
     this.setState({
       isLike: false,
     })
     post.likes.shift()
-    
+
   }
 
   render() {
     const { post } = this.props;
-    const {isLike} = this.state;
+    const { isLike } = this.state;
     console.log(post.likes)
     return (
       <div className="App">
@@ -57,32 +58,39 @@ like(){
         <Navbar />
         <br />
         <br />
-        {
-          post.images.map((v, i) => {
-            // console.log(v);
-            return <div className="card-header" >
-              <img key={i} src={v} alt="image" className="render-image" />
-              <br />
-              <span>
-                {/* <img src={image} className="logo" /> */}
-                {post.likes[0]} and {`${post.likes[1]}  ${post.likes.length} others`} </span>
-              <br />
-              {isLike && this.emojis() }
-              { !isLike ? 
-              <button className="like-button" onClick={this.like.bind(this)}> Like </button>
-                :
-              <button className="like-button" onClick={this.dislike.bind(this)}> Dislike </button>
-                
-
-            }
-
-
-            </div>
-          })
-        }
+        <div>
+        <FbImageLibrary width={100} countFrom={5} images={post.images}/>
+      </div>
       </div>
     );
   }
 }
 
 export default Fb_Post;
+
+// {
+//   post.images.map((v, i) => {
+//     // console.log(v);
+//     return <div className="card-header" >
+//       <img key={i} src={v} alt="image" className="render-image" />
+//       <br />
+//       {/* likes total are showing */}
+
+//       <span>{post.likes[0]} and {`${post.likes[1]}  ${post.likes.length} others`} </span>
+//       <br />
+//       {/* show emojis */}
+
+//       {isLike && this.emojis()}
+
+//       {/* use toggle button */}
+
+//       {!isLike ?
+//         <button className="like-button" onClick={this.like.bind(this)}> Like </button>
+//         :
+//         <button className="like-button" onClick={this.dislike.bind(this)}> Dislike </button>
+//       }
+
+
+//     </div>
+//   })
+// }
