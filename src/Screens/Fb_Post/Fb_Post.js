@@ -26,11 +26,15 @@ constructor(){
         {
         post.images.map((v , i)=>{
           console.log(v);
-          return <div>  
-          <img key={i} src={v} alt="image" className="render-image" />/
+          return <div className="card-header" >
+          <img key={i} src={v} alt="image" className="render-image" />
           <br/>
           <br/>
-          </div>
+            <button className="like-button"> Like </button>
+          
+
+
+</div>
         })
       }
       </div>
