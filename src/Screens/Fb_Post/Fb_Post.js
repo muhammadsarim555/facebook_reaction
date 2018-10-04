@@ -21,11 +21,16 @@ constructor(){
     return (
       <div className="App">
         <Navbar />
+          <br/>
         <br />
         {
         post.images.map((v , i)=>{
           console.log(v);
-          return <img key={i} src={v} alt="image" className="render-image" />
+          return <div>  
+          <img key={i} src={v} alt="image" className="render-image" />/
+          <br/>
+          <br/>
+          </div>
         })
       }
       </div>
