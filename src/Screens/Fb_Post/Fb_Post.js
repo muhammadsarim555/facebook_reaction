@@ -30,21 +30,27 @@ class Fb_Post extends Component {
   }
 
 like(){
-    this.setState({
+  const {post} = this.props;  
+  this.setState({
       isLike: true,
     })
+    post.likes.unshift('You')
+
   }
 
   dislike(){
+  const {post} = this.props;  
     this.setState({
       isLike: false,
     })
+    post.likes.shift()
+    
   }
 
   render() {
     const { post } = this.props;
     const {isLike} = this.state;
-    console.log(post.likes.length)
+    console.log(post.likes)
     return (
       <div className="App">
         {/* {this.emojis()} */}
@@ -53,13 +59,13 @@ like(){
         <br />
         {
           post.images.map((v, i) => {
-            console.log(v);
+            // console.log(v);
             return <div className="card-header" >
               <img key={i} src={v} alt="image" className="render-image" />
               <br />
               <span>
                 {/* <img src={image} className="logo" /> */}
-                {post.likes.length} </span>
+                {post.likes[0]} and {`${post.likes[1]}  ${post.likes.length} others`} </span>
               <br />
               {isLike && this.emojis() }
               { !isLike ? 
