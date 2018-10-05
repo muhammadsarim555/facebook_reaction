@@ -51,7 +51,7 @@ class Fb_Post extends Component {
   render() {
     const { post } = this.props;
     const { isLike } = this.state;
-    console.log(post.createdAt)
+    console.log(post)
     return (
       <div className="App">
         {/* {this.emojis()} */}
@@ -60,22 +60,35 @@ class Fb_Post extends Component {
         <br />
 
         <div className="card-header">
-          <div className="render-data">
-          <img src={post.avatar} id="profile-image" alt='profile image' />
-            <h4> {post.description} </h4>
-    <p> {post.createdAt} </p>
-          <br/>
+
+
+
+
+
+
+
+
+          <img src={post.avatar} styl={{width: "100px"}} className="profile-image" alt="profile image" />
+          <div className="info">
+          <span> {post.createdBy} </span><br/>
+          <span> {post.createdAt} </span>
           </div>
-        <FbImageLibrary width={100} height={100} countFrom={5} images={post.images}/>
-       <span>{post.likes[0]} and {`${post.likes[1]}  ${post.likes.length} others`} </span> 
-      <br />
-      {isLike && this.emojis()}
-      {!isLike ?
-        <button className="like-button" onClick={this.like.bind(this)}> Like </button>
-        :
-        <button className="like-button" onClick={this.dislike.bind(this)}> Dislike </button>
-      }
-      </div>
+          <FbImageLibrary width={100} height={100} countFrom={5} images={post.images} />
+
+          <span>{post.likes[0]} and {`${post.likes[1]}  ${post.likes.length} others`} </span>
+          <hr />
+
+
+
+
+
+          {isLike && this.emojis()}
+          {!isLike ?
+            <a className="like-button" onClick={this.like.bind(this) } > Like </a>
+            :
+            <a className="like-button" onClick={this.dislike.bind(this)} style={{color:"blue"}}> Like </a>
+          }
+        </div>
       </div>
     );
   }
