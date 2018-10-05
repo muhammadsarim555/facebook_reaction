@@ -80,7 +80,7 @@ class Fb_Post extends Component {
           
           <FbImageLibrary width={100} countFrom={5} images={post.images} />
 
-          <span>{post.likes[0]} and {`${post.likes[1]}  ${post.likes.length} others`} </span>
+          <span>{post.likes[0]}, {`${post.likes[1]} and ${post.likes.length} others`} </span>
           <hr />
 
 
