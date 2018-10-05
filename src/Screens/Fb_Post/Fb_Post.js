@@ -4,6 +4,7 @@ import FacebookEmoji from 'react-facebook-emoji';
 import image from '../../Images/images.png';
 import FbImageLibrary from 'react-fb-image-grid';
 import '../../App.css';
+import moment from "moment";
 
 
 
@@ -51,7 +52,8 @@ class Fb_Post extends Component {
   render() {
     const { post } = this.props;
     const { isLike } = this.state;
-    console.log(post)
+    let time = moment(post.createdAt).fromNow();
+    console.log(time)
     return (
       <div className="App">
         {/* {this.emojis()} */}
@@ -67,13 +69,16 @@ class Fb_Post extends Component {
 
 
 
-
-          <img src={post.avatar} styl={{width: "100px"}} className="profile-image" alt="profile image" />
+          <div className="render-info">
+          <img src={post.avatar}  className="profile-image" alt="profile image" />
           <div className="info">
           <span> {post.createdBy} </span><br/>
-          <span> {post.createdAt} </span>
+          <span> {time} </span>
+          </div><br/><br/><br/><br/><br/>
+          <span className="des"> {post.description} </span>
           </div>
-          <FbImageLibrary width={100} height={100} countFrom={5} images={post.images} />
+          
+          <FbImageLibrary width={100} countFrom={5} images={post.images} />
 
           <span>{post.likes[0]} and {`${post.likes[1]}  ${post.likes.length} others`} </span>
           <hr />
