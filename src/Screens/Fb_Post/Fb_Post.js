@@ -51,15 +51,30 @@ class Fb_Post extends Component {
   render() {
     const { post } = this.props;
     const { isLike } = this.state;
-    console.log(post.likes)
+    console.log(post.createdAt)
     return (
       <div className="App">
         {/* {this.emojis()} */}
-        <Navbar />
+        {/* <Navbar /> */}
         <br />
         <br />
-        <div>
-        <FbImageLibrary width={100} countFrom={5} images={post.images}/>
+
+        <div className="card-header">
+          <div className="render-data">
+          <img src={post.avatar} id="profile-image" alt='profile image' />
+            <h4> {post.description} </h4>
+    <p> {post.createdAt} </p>
+          <br/>
+          </div>
+        <FbImageLibrary width={100} height={100} countFrom={5} images={post.images}/>
+       <span>{post.likes[0]} and {`${post.likes[1]}  ${post.likes.length} others`} </span> 
+      <br />
+      {isLike && this.emojis()}
+      {!isLike ?
+        <button className="like-button" onClick={this.like.bind(this)}> Like </button>
+        :
+        <button className="like-button" onClick={this.dislike.bind(this)}> Dislike </button>
+      }
       </div>
       </div>
     );
@@ -80,15 +95,15 @@ export default Fb_Post;
 //       <br />
 //       {/* show emojis */}
 
-//       {isLike && this.emojis()}
+      // {isLike && this.emojis()}
 
 //       {/* use toggle button */}
 
-//       {!isLike ?
-//         <button className="like-button" onClick={this.like.bind(this)}> Like </button>
-//         :
-//         <button className="like-button" onClick={this.dislike.bind(this)}> Dislike </button>
-//       }
+      // {!isLike ?
+      //   <button className="like-button" onClick={this.like.bind(this)}> Like </button>
+      //   :
+      //   <button className="like-button" onClick={this.dislike.bind(this)}> Dislike </button>
+      // }
 
 
 //     </div>
