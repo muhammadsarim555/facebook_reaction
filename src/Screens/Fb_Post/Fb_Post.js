@@ -16,12 +16,15 @@ class Fb_Post extends Component {
     this.state = {
       isLike: false,
       type: '',
+      isHover: false,
     }
+    // this.emojis = this.emojis.bind(this)
   }
 
   emojis(type) {
     return <div className="emojis">
-      <span className="emojis-info" onClick={(e) => this.setState({type: "like"} , () => console.log(this.state.type))}> <FacebookEmoji type="like" size="sm"  /></span>
+      <span className="emojis-info" onClick={(e) => this.setState({type: "like"} , () => console.log(this.state.type))}> 
+      <FacebookEmoji type="like" size="sm"  /></span>
       <span className="emojis-info" onClick={(e) => this.setState({type: "love"} , () => console.log(this.state.type))}>
       <FacebookEmoji type="love" size="sm" /></span>
       <span className="emojis-info" onClick={(e) => this.setState({type: "yay"} , () => console.log(this.state.type))}>
@@ -58,9 +61,27 @@ class Fb_Post extends Component {
 
   }
 
+  checking(){
+    return <div> 
+      <h2> Jsx is rendering... </h2>
+    </div>}
+
+    updating(){
+      this.setState({isHover: true});
+    console.log(this.state.isHover);
+      
+    }
+
+    mouseOut(){
+      this.setState({isHover:false});
+      console.log(this.state.isHover)
+    }
+
+
   render() {
+    console.log("i am render ")
     const { post } = this.props;
-    const { isLike , type } = this.state;
+    const { isLike , type , isHover } = this.state;
     let time = moment(post.createdAt).fromNow();
     console.log(time)
     return (
@@ -96,14 +117,17 @@ class Fb_Post extends Component {
 
 
 
-          {isLike && this.emojis()}
+          {isLike && isHover && this.emojis()}
+          {/* {isHover && this.emojis()} */}
           {!isLike ?
-            <a className="like-button" onClick={this.like.bind(this) } > Like </a>
+            <a className="like-button" onClick={this.like.bind(this) } onMouseOver={() => this.updating()} >
+            {/* //  onMouseOver={() => this.updating()} */}
+             Like </a>
             :
             // <a className="like-button" onClick={this.dislike.bind(this)} style={{color:"blue"}}> Like </a>
             <span className="emojis-info" onClick={this.dislike.bind(this)}> <FacebookEmoji type={type} size="sm"  /></span>
-            
           }
+          
         </div>
       </div>
     );
