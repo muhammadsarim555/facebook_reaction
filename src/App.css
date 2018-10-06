@@ -73,3 +73,10 @@ img{
   margin: 5%;
 }
 
+.emojis{
+  cursor: pointer;
+}
+
+.emojis .emojis-info:hover{
+  height: 15%;
+}

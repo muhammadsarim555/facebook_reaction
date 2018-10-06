@@ -15,28 +15,37 @@ class Fb_Post extends Component {
     super();
     this.state = {
       isLike: false,
+      type: '',
     }
   }
 
-  emojis() {
-    return <div>
-      <FacebookEmoji type="like" size="sm" />
-      <FacebookEmoji type="love" size="sm" />
-      <FacebookEmoji type="yay" size="sm" />
-      <FacebookEmoji type="wow" size="sm" />
-      <FacebookEmoji type="angry" size="sm" />
-      <FacebookEmoji type="haha" size="sm" />
-      <FacebookEmoji type="sad" size="sm" />
+  emojis(type) {
+    return <div className="emojis">
+      <span className="emojis-info" onClick={(e) => this.setState({type: "like"} , () => console.log(this.state.type))}> <FacebookEmoji type="like" size="sm"  /></span>
+      <span className="emojis-info" onClick={(e) => this.setState({type: "love"} , () => console.log(this.state.type))}>
+      <FacebookEmoji type="love" size="sm" /></span>
+      <span className="emojis-info" onClick={(e) => this.setState({type: "yay"} , () => console.log(this.state.type))}>
+      <FacebookEmoji type="yay" size="sm" /></span>
+      <span className="emojis-info" onClick={(e) => this.setState({type: "wow"} , () => console.log(this.state.type))}>
+       <FacebookEmoji type="wow" size="sm" /></span>
+      <span className="emojis-info" onClick={(e) => this.setState({type: "angry"} , () => console.log(this.state.type))}>
+        <FacebookEmoji type="angry" size="sm" /></span>
+      <span className="emojis-info" onClick={(e) => this.setState({type: "haha"} , () => console.log(this.state.type))}>
+        <FacebookEmoji type="haha" size="sm" /></span>
+      <span className="emojis-info" onClick={(e) => this.setState({type: "sad"} , () => console.log(this.state.type))}>
+        <FacebookEmoji type="sad" size="sm" /> </span>
       {/* <FacebookEmoji type="like" size="sm"/> */}
     </div>
   }
 
-  like() {
+  like(t) {
+    const { type } = this.state;
     const { post } = this.props;
     this.setState({
       isLike: true,
     })
     post.likes.unshift('You')
+    console.log(type)
 
   }
 
@@ -51,7 +60,7 @@ class Fb_Post extends Component {
 
   render() {
     const { post } = this.props;
-    const { isLike } = this.state;
+    const { isLike , type } = this.state;
     let time = moment(post.createdAt).fromNow();
     console.log(time)
     return (
@@ -91,7 +100,9 @@ class Fb_Post extends Component {
           {!isLike ?
             <a className="like-button" onClick={this.like.bind(this) } > Like </a>
             :
-            <a className="like-button" onClick={this.dislike.bind(this)} style={{color:"blue"}}> Like </a>
+            // <a className="like-button" onClick={this.dislike.bind(this)} style={{color:"blue"}}> Like </a>
+            <span className="emojis-info" onClick={this.dislike.bind(this)}> <FacebookEmoji type={type} size="sm"  /></span>
+            
           }
         </div>
       </div>
