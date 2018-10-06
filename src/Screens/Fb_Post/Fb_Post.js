@@ -21,26 +21,26 @@ class Fb_Post extends Component {
     // this.emojis = this.emojis.bind(this)
   }
 
-  gettingEmojisTypeName(e){
-    this.setState({type:e , isHover:false })
+  gettingEmojisTypeName(e) {
+    this.setState({ type: e, isHover: false })
     console.log(this.state.type)
   }
 
   emojis(type) {
     return <div className="emojis">
-      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "like") }> 
-      <FacebookEmoji type="like" size="sm"  /></span>
-      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "love") }>
-      <FacebookEmoji type="love" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "yay") }>
-      <FacebookEmoji type="yay" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "wow") }>
-       <FacebookEmoji type="wow" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "angry") }>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName("like")}>
+        <FacebookEmoji type="like" size="sm" /></span>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName("love")}>
+        <FacebookEmoji type="love" size="sm" /></span>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName("yay")}>
+        <FacebookEmoji type="yay" size="sm" /></span>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName("wow")}>
+        <FacebookEmoji type="wow" size="sm" /></span>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName("angry")}>
         <FacebookEmoji type="angry" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "haha") }>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName("haha")}>
         <FacebookEmoji type="haha" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "sad") }>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName("sad")}>
         <FacebookEmoji type="sad" size="sm" /> </span>
     </div>
   }
@@ -65,27 +65,28 @@ class Fb_Post extends Component {
 
   }
 
-  checking(){
-    return <div> 
+  checking() {
+    return <div>
       <h2> Jsx is rendering... </h2>
-    </div>}
+    </div>
+  }
 
-    updating(){
-      this.setState({isHover: true});
+  updating() {
+    this.setState({ isHover: true });
     console.log(this.state.isHover);
-      
-    }
 
-    mouseOut(){
-      this.setState({isHover:false});
-      console.log(this.state.isHover)
-    }
+  }
+
+  mouseOut() {
+    this.setState({ isHover: false });
+    console.log(this.state.isHover)
+  }
 
 
   render() {
     console.log("i am render ")
     const { post } = this.props;
-    const { isLike , type , isHover } = this.state;
+    const { isLike, type, isHover } = this.state;
     let time = moment(post.createdAt).fromNow();
     console.log(time)
     return (
@@ -104,14 +105,14 @@ class Fb_Post extends Component {
 
 
           <div className="render-info">
-          <img src={post.avatar}  className="profile-image" alt="profile image" />
-          <div className="info">
-          <span> {post.createdBy} </span><br/>
-          <span> {time} </span>
-          </div><br/><br/><br/><br/><br/>
-          <span className="des"> {post.description} </span>
+            <img src={post.avatar} className="profile-image" alt="profile image" />
+            <div className="info">
+              <span> {post.createdBy} </span><br />
+              <span> {time} </span>
+            </div><br /><br /><br /><br /><br />
+            <span className="des"> {post.description} </span>
           </div>
-          
+
           <FbImageLibrary width={100} countFrom={5} images={post.images} />
 
           <span>{post.likes[0]}, {`${post.likes[1]} and ${post.likes.length} others`} </span>
@@ -121,17 +122,17 @@ class Fb_Post extends Component {
 
 
 
-          { isLike && isHover && this.emojis()}
+          {isLike && isHover && this.emojis()}
           {/* {isHover && this.emojis()} */}
           {!isLike ?
-            <a className="like-button" onClick={this.like.bind(this) } onMouseOver={() => this.updating()} >
-            {/* //  onMouseOver={() => this.updating()} */}
-             Like </a>
+            <a className="like-button" onClick={this.like.bind(this)} onMouseOver={() => this.updating()} >
+              {/* //  onMouseOver={() => this.updating()} */}
+              Like </a>
             :
             // <a className="like-button" onClick={this.dislike.bind(this)} style={{color:"blue"}}> Like </a>
-            <span className="emojis-info" onClick={this.dislike.bind(this)}> <FacebookEmoji type={type} size="sm"  /></span>
+            <span className="emojis-info" onClick={this.dislike.bind(this)}> <FacebookEmoji type={type} size="sm" /></span>
           }
-          
+
         </div>
       </div>
     );
@@ -139,30 +140,3 @@ class Fb_Post extends Component {
 }
 
 export default Fb_Post;
-
-// {
-//   post.images.map((v, i) => {
-//     // console.log(v);
-//     return <div className="card-header" >
-//       <img key={i} src={v} alt="image" className="render-image" />
-//       <br />
-//       {/* likes total are showing */}
-
-//       <span>{post.likes[0]} and {`${post.likes[1]}  ${post.likes.length} others`} </span>
-//       <br />
-//       {/* show emojis */}
-
-      // {isLike && this.emojis()}
-
-//       {/* use toggle button */}
-
-      // {!isLike ?
-      //   <button className="like-button" onClick={this.like.bind(this)}> Like </button>
-      //   :
-      //   <button className="like-button" onClick={this.dislike.bind(this)}> Dislike </button>
-      // }
-
-
-//     </div>
-//   })
-// }

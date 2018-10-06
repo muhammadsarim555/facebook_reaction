@@ -78,6 +78,11 @@ img{
   cursor: pointer;
 }
 
-.emojis .emojis-info:hover{
-  height: 15%;
+
+
+.emojis .emoji__face:hover {
+  margin-bottom: 5%;;
+  /* width: 30%;
+  height: 30%; */
+  border-radius: 50%;
 }
