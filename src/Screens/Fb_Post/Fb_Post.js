@@ -22,7 +22,7 @@ class Fb_Post extends Component {
   }
 
   gettingEmojisTypeName(e){
-    this.setState({type:e})
+    this.setState({type:e , isHover:false })
     console.log(this.state.type)
   }
 
@@ -121,7 +121,7 @@ class Fb_Post extends Component {
 
 
 
-          {isLike && isHover && this.emojis()}
+          { isLike && isHover && this.emojis()}
           {/* {isHover && this.emojis()} */}
           {!isLike ?
             <a className="like-button" onClick={this.like.bind(this) } onMouseOver={() => this.updating()} >
