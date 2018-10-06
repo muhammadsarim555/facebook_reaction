@@ -21,23 +21,27 @@ class Fb_Post extends Component {
     // this.emojis = this.emojis.bind(this)
   }
 
+  gettingEmojisTypeName(e){
+    this.setState({type:e})
+    console.log(this.state.type)
+  }
+
   emojis(type) {
     return <div className="emojis">
-      <span className="emojis-info" onClick={(e) => this.setState({type: "like"} , () => console.log(this.state.type))}> 
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "like") }> 
       <FacebookEmoji type="like" size="sm"  /></span>
-      <span className="emojis-info" onClick={(e) => this.setState({type: "love"} , () => console.log(this.state.type))}>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "love") }>
       <FacebookEmoji type="love" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.setState({type: "yay"} , () => console.log(this.state.type))}>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "yay") }>
       <FacebookEmoji type="yay" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.setState({type: "wow"} , () => console.log(this.state.type))}>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "wow") }>
        <FacebookEmoji type="wow" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.setState({type: "angry"} , () => console.log(this.state.type))}>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "angry") }>
         <FacebookEmoji type="angry" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.setState({type: "haha"} , () => console.log(this.state.type))}>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "haha") }>
         <FacebookEmoji type="haha" size="sm" /></span>
-      <span className="emojis-info" onClick={(e) => this.setState({type: "sad"} , () => console.log(this.state.type))}>
+      <span className="emojis-info" onClick={(e) => this.gettingEmojisTypeName( "sad") }>
         <FacebookEmoji type="sad" size="sm" /> </span>
-      {/* <FacebookEmoji type="like" size="sm"/> */}
     </div>
   }
 
